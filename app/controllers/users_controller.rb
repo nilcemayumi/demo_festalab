@@ -4,6 +4,15 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        name LIKE :query
+        OR email LIKE :query
+        OR phone LIKE :query
+        OR cpf LIKE :query
+      SQL
+      @users = @users.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   # GET /users/1 or /users/1.json
