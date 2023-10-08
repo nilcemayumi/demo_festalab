@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+puts 'Limpando banco de dados'
+User.destroy_all
+
+Faker::Config.locale = 'pt-BR'
+
+puts 'Criando usuários'
+100.times do
+  User.create!(name: Faker::Name.name,
+               email: Faker::Internet.email,
+               phone: Faker::PhoneNumber.phone_number,
+               cpf: Faker::IDNumber.brazilian_citizen_number)
+end
+puts 'Usuários criados'
