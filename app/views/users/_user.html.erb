@@ -11,12 +11,16 @@
 
   <p>
     <strong>Phone:</strong>
-    <%= user.phone %>
+    <% if user.phone.size == 10 %>
+      <%= "(#{user.phone[0,2]}) #{user.phone[2,4]}-#{user.phone[6,4]}" %>
+    <%else%>
+      <%= "(#{user.phone[0,2]}) #{user.phone[2,5]}-#{user.phone[7,4]}" %>
+    <%end%>
   </p>
 
   <p>
-    <strong>Cpf:</strong>
-    <%= user.cpf %>
+    <strong>CPF:</strong>
+    <%= "#{user.cpf[0,3]}.#{user.cpf[3,3]}.#{user.cpf[6,3]}-#{user.cpf[9,2]}" %>
   </p>
 
 </div>

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
+    user_data_treatment
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -76,5 +77,11 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :phone, :cpf)
+  end
+
+  # Exclude from CPF and phone numbers digits that are nor numbers
+  def user_data_treatment
+    params[:user][:cpf] = params[:user][:cpf].gsub(/\D/, '')
+    params[:user][:phone] = params[:user][:phone].gsub(/\D/, '')
   end
 end

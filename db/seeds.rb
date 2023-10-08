@@ -16,7 +16,7 @@ puts 'Criando usuários'
 100.times do
   User.create!(name: Faker::Name.name,
                email: Faker::Internet.email,
-               phone: Faker::PhoneNumber.phone_number,
+               phone: Faker::PhoneNumber.phone_number.gsub(/\D/, ''),
                cpf: Faker::IDNumber.brazilian_citizen_number)
 end
 puts 'Usuários criados'
