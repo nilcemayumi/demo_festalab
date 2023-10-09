@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-
+  before_action :user_data_treatment, only: %i[create update]
   # GET /users or /users.json
   def index
     @users = User.all
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    user_data_treatment
     @user = User.new(user_params)
 
     respond_to do |format|
