@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :user_data_treatment, only: %i[create update]
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.all.order(:name)
     if params[:query].present?
       sql_subquery = <<~SQL
         name LIKE :query
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         OR phone LIKE :query
         OR cpf LIKE :query
       SQL
-      @users = @users.where(sql_subquery, query: "%#{params[:query]}%")
+      @users = @users.where(sql_subquery, query: "%#{params[:query]}%").order(:name)
     end
   end
 
