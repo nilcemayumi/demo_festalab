@@ -1,0 +1,23 @@
+.user-card{
+  border: 1px solid #7714F1;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-card p{
+  margin: 3px;
+}
+
+.link{
+  text-decoration: none;
+  color: #7714F1;
+  font-weight: bold;
+}
+
+.p-link {
+  text-align: end;
+}

@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+ @import url("components/search.css");
+ @import url("components/button.css");
+ @import url("components/user_card.css");
+ @import url("components/card_grid.css");
+ @import url("components/navbar.css");
+
+  body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
+  }

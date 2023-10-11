@@ -5,7 +5,7 @@ export default class extends Controller {
   // static targets = [ "startDate", "endDate" , "total"]
 
   connect() {
-    const phone = document.getElementById('phone');
+    const phone = document.getElementById('user_phone');
     const phoneMaskOptions = {
       mask: [
         {
@@ -20,7 +20,7 @@ export default class extends Controller {
     };
     IMask(phone,phoneMaskOptions);
 
-    const cpf = document.getElementById('cpf');
+    const cpf = document.getElementById('user_cpf');
     const cpfMaskOptions = {
       mask: '000.000.000-00'
     };

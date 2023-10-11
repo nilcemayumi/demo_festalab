@@ -1,28 +1,29 @@
-
 <p style="color: green"><%= notice %></p>
-<h1>Users</h1>
-
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: users_path, method: :get, class: "d-flex" do %>
+<div class="navbar">
+  <h2>Usuários</h2>
+  <%= link_to "Cadastrar usuário", new_user_path%>
+</div>
+<div>
+  <div>
+    <%= form_with url: users_path, method: :get do %>
       <%= text_field_tag :query,
             params[:query],
-            class: "form-control",
+            class: "form-input",
             placeholder: "Pesquisar"
         %>
-      <%= submit_tag "Buscar", name: "", class: "btn btn-primary" %>
+      <%= submit_tag "Buscar", name: "", class: "btn-flat" %>
     <% end %>
   </div>
 </div>
-
-<%= link_to "New user", new_user_path %>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+<div>
+  <div id="users" class="cards">
+    <% @users.each do |user| %>
+      <div class="user-card">
+        <%= render user %>
+        <p class="p-link">
+          <%= link_to "Datalhes do usuário", user , class: "link"%>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
-

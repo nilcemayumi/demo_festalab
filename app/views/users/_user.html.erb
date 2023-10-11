@@ -1,6 +1,6 @@
 <div id="<%= dom_id user %>">
   <p>
-    <strong>Name:</strong>
+    <strong>Nome:</strong>
     <%= user.name %>
   </p>
 
@@ -10,7 +10,7 @@
   </p>
 
   <p>
-    <strong>Phone:</strong>
+    <strong>Telefone:</strong>
     <% if user.phone.size == 10 %>
       <%= "(#{user.phone[0,2]}) #{user.phone[2,4]}-#{user.phone[6,4]}" %>
     <%else%>

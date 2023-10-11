@@ -1,0 +1,11 @@
+.navbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a{
+  text-decoration: none;
+  color: #7714F1;
+  font-weight: bold;
+  margin-top: 30px;
+}
