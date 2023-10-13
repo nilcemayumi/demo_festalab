@@ -87,6 +87,7 @@ class UsersController < ApplicationController
 
   # Check the query string and clean it if user included pontucation on phone and cpf
   def string_treatment(string)
+    string.strip!
     # exclude all characters that can be on a phone or cpf string
     clean_string = string.gsub(/(\(|\)|-|\.|\s)/, "")
     # checks if there are still non-digit characters and returns the treated or untreated string

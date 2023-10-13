@@ -17,7 +17,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference("User.count") do
-      post users_url, params: { user: { cpf: @user.cpf, email: @user.email, name: @user.name, phone: @user.phone } }
+      post users_url, params: { user: { cpf: '08600548969', email: @user.email, name: @user.name, phone: @user.phone } }
     end
 
     assert_redirected_to user_url(User.last)
@@ -44,5 +44,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to users_url
+  end
+
+  test 'should save user cpf without non-digit characters' do
+    post users_url, params: { user: { cpf: '022.210.609-38',
+                                      email: @user.email,
+                                      name: @user.name,
+                                      phone: @user.phone } }
+    assert_equal('02221060938', User.last.cpf, 'Salvou o cpf com caracteres que não são numéricos')
   end
 end
