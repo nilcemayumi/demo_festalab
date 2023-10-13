@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <div class="navbar">
-  <h2>Usuários</h2>
+  <h2><%= link_to "Usuários", root_path %></h2>
   <%= link_to "Cadastrar usuário", new_user_path%>
 </div>
 <div>
@@ -8,7 +8,7 @@
     <%= form_with url: users_path, method: :get do %>
       <%= text_field_tag :query,
             params[:query],
-            class: "form-input",
+            class: "search-input",
             placeholder: "Pesquisar"
         %>
       <%= submit_tag "Buscar", name: "", class: "btn-flat" %>
@@ -21,7 +21,7 @@
       <div class="user-card">
         <%= render user %>
         <p class="p-link">
-          <%= link_to "Datalhes do usuário", user , class: "link"%>
+          <%= link_to "Detalhes do usuário", user , class: "link"%>
         </p>
       </div>
     <% end %>

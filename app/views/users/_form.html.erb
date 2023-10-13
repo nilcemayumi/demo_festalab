@@ -1,23 +1,59 @@
-<script src="https://unpkg.com/imask"></script>
-<div data-controller="imask">
-  <%= simple_form_for @user do |f| %>
-  <div>
-    <%= f.input :name, label: 'Nome: '%>
-  </div>
-  <div>
-    <%= f.input :email, label: 'Email: ' %>
-  </div>
-  <div>
-    <%= f.input :phone , label: 'Telefone: ',
-                         placeholder: '(__) _____-____',
-                         hint: 'Digite o DDD',
-                         id: 'phone'%>
-  </div>
-  <div>
-    <%= f.input :cpf , label: 'CPF: ',
-                       placeholder: '___.___.___-__',
-                       id: 'cpf'%>
-  </div>
-  <%= f.button :submit %>
-  <% end %>
+<%= form_with(model: user) do |form| %>
+  <div data-controller="imask">
+    <% invalid = user.errors.include?(:name) %>
+    <div class="mb-3">
+      <%= form.label "Nome", class: "form-label"%>
+      <%= form.text_field :name, class:"form-control #{'is-invalid' if invalid}"%>
+      <% if invalid %>
+        <div class="invalid-feedback d-block">
+          <%= user.errors[:name].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <% invalid = user.errors.include?(:email) %>
+      <%= form.label "Email", class: "form-label" %>
+      <%= form.text_field :email, class:"form-control #{'is-invalid' if invalid}"%>
+      <% if invalid %>
+        <div class="invalid-feedback d-block">
+          <%= user.errors[:email].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <% invalid = user.errors.include?(:phone) %>
+      <%= form.label "Telefone", class: "form-label"%>
+      <%= form.text_field :phone ,
+                          id: 'userPhone',
+                          class: "form-control #{'is-invalid' if invalid}",
+                          placeholder: "(__) _____-____"%>
+      <div id="phoneHelp" class="form-text">Digite o DDD</div>
+      <% if invalid %>
+        <div class="invalid-feedback d-block">
+          <%= user.errors[:phone].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mb-3">
+      <% invalid = user.errors.include?(:cpf) %>
+      <%= form.label :cpf, "CPF", class: "form-label"%>
+      <%= form.text_field :cpf ,
+                          id: 'userCpf',
+                          class: "form-control #{'is-invalid' if invalid}",
+                          placeholder: "___.___.___-__"%>
+      <% if invalid %>
+        <div class="invalid-feedback d-block">
+          <%= user.errors[:cpf].first %>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit "Salvar", class: "btn-flat btn-full-width" %>
+    </div>
+
+    <% end %>
 </div>

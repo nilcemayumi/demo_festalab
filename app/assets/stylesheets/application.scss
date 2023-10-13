@@ -14,14 +14,22 @@
  *= require_self
  */
 
- @import url("components/search.css");
- @import url("components/button.css");
- @import url("components/user_card.css");
- @import url("components/card_grid.css");
- @import url("components/navbar.css");
+ @import url("components/search.scss");
+ @import url("components/button.scss");
+ @import url("components/user_card.scss");
+ @import url("components/card_grid.scss");
+ @import url("components/navbar.scss");
+ @import url("components/form.scss");
+ @import url("components/container.scss");
+ @import url("pages/index.scss");
+ @import url("components/link.scss");
 
-  body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+ $primary: #670BFF;
+ $danger: #DC3545;
+
+ $theme-colors: (
+  "primary": $primary,
+  "danger": $danger
+);
+
+ @import "bootstrap";

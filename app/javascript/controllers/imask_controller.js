@@ -1,11 +1,9 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="cpf"
+// Connects to data-controller="imask"
 export default class extends Controller {
-  // static targets = [ "startDate", "endDate" , "total"]
-
   connect() {
-    const phone = document.getElementById('user_phone');
+    const phone = document.getElementById('userPhone');
     const phoneMaskOptions = {
       mask: [
         {
@@ -20,7 +18,7 @@ export default class extends Controller {
     };
     IMask(phone,phoneMaskOptions);
 
-    const cpf = document.getElementById('user_cpf');
+    const cpf = document.getElementById('userCpf');
     const cpfMaskOptions = {
       mask: '000.000.000-00'
     };
