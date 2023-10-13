@@ -5,13 +5,14 @@ class UsersController < ApplicationController
   def index
     @users = User.all.order(:name)
     if params[:query].present?
+      query_string = string_treatment(params[:query])
       sql_subquery = <<~SQL
         name LIKE :query
         OR email LIKE :query
         OR phone LIKE :query
         OR cpf LIKE :query
       SQL
-      @users = @users.where(sql_subquery, query: "%#{params[:query]}%").order(:name)
+      @users = @users.where(sql_subquery, query: "%#{query_string}%").order(:name)
     end
   end
 
@@ -82,5 +83,13 @@ class UsersController < ApplicationController
   def user_data_treatment
     params[:user][:cpf] = params[:user][:cpf].gsub(/\D/, '')
     params[:user][:phone] = params[:user][:phone].gsub(/\D/, '')
+  end
+
+  # Check the query string and clean it if user included pontucation on phone and cpf
+  def string_treatment(string)
+    # exclude all characters that can be on a phone or cpf string
+    clean_string = string.gsub(/(\(|\)|-|\.|\s)/, "")
+    # checks if there are still non-digit characters and returns the treated or untreated string
+    clean_string.match?(/\D/) ? string : clean_string
   end
 end
